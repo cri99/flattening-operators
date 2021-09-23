@@ -1,0 +1,116 @@
+<div class="flattening-operators-container">
+  <h2>Impara i vari tipi di Flattening Operators grazie ai biscotti!</h2>
+
+  <div class="operator-choice-section">
+    <div>
+      Scegli l'operatore RxJs da applicare per l'aggiunta di nuovi biscotti!
+    </div>
+
+    <!-- Radio buttons per scegliere l'operatore da applicare -->
+    <mat-radio-group
+      class="operators-radio-group"
+      [ngModel]="selectedOperatorType$ | async"
+      (ngModelChange)="selectOperatorType($event)"
+    >
+      <!-- Radio button per SwitchMap -->
+      <mat-radio-button
+        class="operator-radio-button"
+        [value]="OperatorTypeEnum.SWITCH_MAP"
+      >
+        <div class="operator-details-container">
+          <div class="operator-title">Switch Map</div>
+          <div class="operator-description">
+            Fa partire tutte le chiamate HTTP, la chiamata precedente viene
+            annullata se non è stata già ottenuta una risposta.
+          </div>
+        </div>
+      </mat-radio-button>
+
+      <!-- Radio button per MergeMap -->
+      <mat-radio-button
+        class="operator-radio-button"
+        [value]="OperatorTypeEnum.MERGE_MAP"
+      >
+        <div class="operator-details-container">
+          <div class="operator-title">Merge Map</div>
+          <div class="operator-description">
+            Tutte le chiamate HTTP partono appena possibile e da tutte si
+            ottiene sempre una risposta da gestire. Non è garantito il corretto
+            ordine di arrivo delle risposte.
+          </div>
+        </div>
+      </mat-radio-button>
+
+      <!-- Radio button per ConcatMap -->
+      <mat-radio-button
+        class="operator-radio-button"
+        [value]="OperatorTypeEnum.CONCAT_MAP"
+      >
+        <div class="operator-details-container">
+          <div class="operator-title">Concat Map</div>
+          <div class="operator-description">
+            Le chiamate HTTP vengono inserite in una coda FIFO. La chiamata HTTP
+            corrente parte quando la precedente è stata completata (ovvero dopo
+            che è stata ottenuta una risposta).
+          </div>
+        </div>
+      </mat-radio-button>
+
+      <!-- Radio button per ExhaustMap -->
+      <mat-radio-button
+        class="operator-radio-button"
+        [value]="OperatorTypeEnum.EXHAUST_MAP"
+      >
+        <div class="operator-details-container">
+          <div class="operator-title">Exhaust Map</div>
+          <div class="operator-description">
+            Le chiamate HTTP partono solo e soltanto se la chiamata precedente
+            non è ancora terminata. Le chiamate ignorate non verranno riemesse
+            successivamente.
+          </div>
+        </div>
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div class="action-buttons-container">
+    <!-- Bottone per aggiunta nuovo biscotto -->
+    <button mat-raised-button color="primary" (click)="addOneCookie()">
+      AGGIUNGI UN BISCOTTO!
+    </button>
+
+    <!-- Bottone per la cancellazione dei biscotti (ovvero gli id delle chiamate per cui si è arrivati a gestire la risposta)-->
+    <button
+      mat-raised-button
+      *ngIf="httpResponsesIds.length"
+      (click)="clearCookies()"
+    >
+      Cancella
+    </button>
+  </div>
+
+  <!-- Lista dei biscotti! -->
+  <div class="cookies-list-container">
+    <ng-container *ngFor="let httpCallId of httpResponsesIds">
+      <mat-card class="card-item">
+        <div>
+          Risposta dalla chiamata HTTP n.
+          <span class="http-call-no">{{ httpCallId }}</span>:
+        </div>
+        <div class="cookie">🍪</div>
+      </mat-card>
+    </ng-container>
+  </div>
+
+  <div class="footer">
+    <div>
+      Esempio realizzato da <span class="author-name">Cristian Borelli</span>
+    </div>
+    <div>
+      <a href="https://www.linkedin.com/in/cristian-borelli/" target="_blank"
+        >Seguimi su Linkedin</a
+      >
+      per scoprire altri consigli ed esempi su RxJs!
+    </div>
+  </div>
+</div>

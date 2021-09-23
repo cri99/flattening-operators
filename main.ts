@@ -15,7 +15,7 @@ import {
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MapToObservableExample } from './app/map-to-observable-example';
+import { FlatteningOperatorsExample } from './app/flattening-operators-example';
 
 @NgModule({
   exports: [
@@ -24,8 +24,8 @@ import { MapToObservableExample } from './app/map-to-observable-example';
     MatCardModule,
     MatIconModule,
     MatInputModule,
-    MatRadioModule
-  ]
+    MatRadioModule,
+  ],
 })
 export class DemoMaterialModule {}
 
@@ -37,12 +37,12 @@ export class DemoMaterialModule {}
     HttpModule,
     HttpClientModule,
     DemoMaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  entryComponents: [MapToObservableExample],
-  declarations: [MapToObservableExample],
-  bootstrap: [MapToObservableExample],
-  providers: []
+  entryComponents: [FlatteningOperatorsExample],
+  declarations: [FlatteningOperatorsExample],
+  bootstrap: [FlatteningOperatorsExample],
+  providers: [],
 })
 export class AppModule {}
 
